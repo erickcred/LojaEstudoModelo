@@ -1,0 +1,63 @@
+@using System.Globalization
+@model IEnumerable<AspNetInicio.Models.Produto>
+
+
+<a href="cadastro" class="btn btn-primary mt-3 mb-3">Cadastrar produto</a>
+
+<section>
+    @* <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+            </button>
+        </div>
+    </div> *@
+
+    @* <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> *@
+
+    <h2>Produtos</h2>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped ">
+            <thead>
+                <tr class="text-center">
+                    <th>#</th>
+                    <th scope="row">Nome</th>
+                    <th>Estoque</th>
+                    <th>Preço</th>
+                    <th>Situação</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var produto in Model.OrderByDescending(x => x.Id))
+            {
+                <tr class="text-center">
+                    <th>@produto.Id</th>
+                    <td class="pro-nome text-start" scope="col">@produto.Name</td>
+                    <td>@produto.QuantityInStok</td>
+                    <td>@produto.Price.ToString("C")</td>
+                    <td>@((produto.Ativo == 1)? "Ativo" : "Inativo")</td>
+                    <td>
+                        <a class="text-primary fw-bold" href="editar/@produto.Id">Editar</a>&nbsp;
+                        @if (produto.Ativo == 1)
+                        {
+                            <a class="text-danger fw-bold" href='delete/@produto.Id'>Inativar</a>
+                        } else
+                        {
+                            <a class="text-success fw-bold" href='ativar/@produto.Id'>Ativar</a>
+                        }
+                        &nbsp;<a class="text-primary fw-bold" href="estoque/@produto.Id">Estoque</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

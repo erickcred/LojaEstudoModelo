@@ -1,0 +1,48 @@
+section {
+    padding: 40px 0px;
+}
+
+.card {
+    border-radius: 15px 15px 10px 10px;
+    position: relative;
+    min-width: 100%;
+}
+.card img{
+    /* object-fit: cover; */
+    border-radius: 15px 15px 0px 0px;
+    height: 250px;
+}
+.card .card-text {
+    padding-bottom: 30px;
+}
+.card-text {
+    font-size: 15px;
+}
+.card .card-description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    padding: 0px 10px;
+}
+.card .btn-group a, .card .btn-group button {
+    padding: 5px 20px 5px 20px;
+}
+.radius-left {
+    border-radius: 15px;
+}
+.radius-right {
+    border-radius: 15px;
+}
+.product-item {
+
+}
+.product-price {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 17px;
+}

@@ -1,0 +1,48 @@
+
+<a href="adm" class="btn btn-secondary mt-3 mb-3">Voltar</a>
+
+<div class="container mt-5 mb-5">
+
+    <form class="row g-3" action="insert" enctype="multipart/form-data" method="post">
+        <div class="col-md-6">
+            <label for="Name" class="form-label">Nome</label>
+            <input type="text" name="Name" class="form-control">
+        </div>
+        <div class="col-md-6">
+            <label for="Price" class="form-label">Preço</label>
+            <input type="number" name="Price" class="form-control" step="0.01">
+        </div>
+        <div class="col-6">
+            <label for="QuantityInStok" class="form-label">Estoque</label>
+            <input type="number" name="QuantityInStok" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label for="Ativo" class="form-label">Situação</label>
+            <select name="Ativo" class="form-select">
+                <option value="1" selected>Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="Description" class="form-label">Descrição</label>
+            <textarea name="Description" cols="10" rows="5" class="form-control"></textarea>
+        </div>
+        <div class="col-md-4">
+            <label for="file" class="form-label">Imagem</label>
+            <input type="file" name="file" class="form-control">
+        </div>
+
+        
+
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+    </form>
+
+</div>
+
+<script>
+</script>

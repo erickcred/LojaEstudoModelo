@@ -1,0 +1,30 @@
+@model AspNetInicio.Models.Produto
+
+@* <section class="container mt-5 mb-5">
+    <p>Produto: @Model.Name</p>
+    <p>Descrição: @Model.Description</p>
+    <p>Estoque: @Model.QuantityInStok</p>
+    <p>Preco: @Model.Price.ToString("C")</p>
+    <p>Total em Estoque: @Model.GetTotal().ToString("C")</p>
+</section> *@
+
+
+<section class="container">
+
+    <div class="d-flex align-items-center gap-5">
+        <div class="col-md-5">
+            <h3 class="card-title">@Model.Name.</h3>
+            <p class="text-muted">@Model.Description</p>
+
+            <div class="product-price">
+                <span class="text-danger fw-bold fs-6">De: <del>@Model.GetTotal().ToString("C")</del></span>
+                <span class="text-success fw-bold fs-5">Por: <inst>@Model.GetTotal().ToString("C")</inst></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <img style="width: 100%" src="@Model.Image" alt="@Model.Name">
+        </div>
+    </div>
+
+</section>
