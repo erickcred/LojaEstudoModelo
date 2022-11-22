@@ -12,12 +12,12 @@
         <input hidden type="number" name="Id" value="@Model.Id" />
         
         <label><strong>Id:</strong> <span name="Id">@Model.Id</span></label> 
-        <label><strong>Produto:</strong> <span>@Model.Name</span></label> 
-        <label><strong>Estoque Atual:</strong> <span>@Model.QuantityInStok</span></label>
+        <label><strong>Produto:</strong> <span>@Model.Nome</span></label> 
+        <label><strong>Estoque Atual:</strong> <span>@Model.Estoque</span></label>
 
         <div class="col-md-6">
-            <label for="QuantityInStok" class="form-label">Estoque para entrada</label>
-            <input type="number" name="QuantityInStok" class="form-control">
+            <label for="Estoque" class="form-label">Estoque para entrada</label>
+            <input type="number" name="Estoque" class="form-control">
         </div>
 
         <div class="col-12">
@@ -26,7 +26,6 @@
     </form>
 
 </div>
-@Model.Price.ToString("F2", CultureInfo.InvariantCulture)
 
 <script>
 </script>

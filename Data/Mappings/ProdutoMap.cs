@@ -12,26 +12,26 @@ namespace AspNetInicio.Data.Mappings
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            builder.Property(x => x.Name)
-                .HasColumnName("Name")
+            builder.Property(x => x.Nome)
+                .HasColumnName("Nome")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255);
 
-            builder.Property(x => x.Price)
-            .HasColumnName("Price")
+            builder.Property(x => x.Preco)
+            .HasColumnName("Preco")
             .HasColumnType("DOUBLE")
             .HasPrecision(9,2);
 
-            builder.Property(x => x.QuantityInStok)
-                .HasColumnName("QuantityInStok")
+            builder.Property(x => x.Estoque)
+                .HasColumnName("Estoque")
                 .HasColumnType("INT");
 
-            builder.Property(x => x.Description)
-                .HasColumnName("Description")
+            builder.Property(x => x.Descricao)
+                .HasColumnName("Descricao")
                 .HasColumnType("TEXT");
 
-            builder.Property(x => x.Image)
-                .HasColumnName("Image")
+            builder.Property(x => x.Imagem)
+                .HasColumnName("Imagem")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255);
 

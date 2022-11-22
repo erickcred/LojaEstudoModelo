@@ -9,16 +9,16 @@
 
     <form class="row g-3" action="/adm/update" enctype="multipart/form-data" method="post">
 
-        <input type="number" name="Id" value="@Model.Id" />
+        <input hidden type="number" name="Id" value="@Model.Id" />
         <div class="col-md-6">
-            <label for="Name" class="form-label">Nome</label>
-            <input type="text" name="Name" class="form-control" value="@Model.Name">
+            <label for="Nome" class="form-label">Nome</label>
+            <input type="text" name="Nome" class="form-control" value="@Model.Nome">
         </div>
 
         <div class="col-md-6">
-            <label for="Price" class="form-label">Preço</label>
-            <input type="number" name="Price" class="form-control" step="0.01" 
-            value='@Model.Price.ToString("F2", CultureInfo.InvariantCulture)'>
+            <label for="Preco" class="form-label">Preço</label>
+            <input type="number" name="Preco" class="form-control" step="0.01" 
+            value='@Model.Preco.ToString("F2", CultureInfo.InvariantCulture)'>
         </div>
 
         <div class="col-md-4">
@@ -31,24 +31,20 @@
         </div>
 
         <div class="col-md-6">
-            <label for="Description" class="form-label">Descrição</label>
-            <textarea name="Description" cols="10" rows="5" class="form-control">@Model.Description</textarea>
+            <label for="Descricao" class="form-label">Descrição</label>
+            <textarea name="Descricao" cols="10" rows="5" class="form-control">@Model.Descricao</textarea>
         </div>
         <div class="col-md-4">
             <label for="file" class="form-label">Imagem</label>
             <input type="file" name="file" class="form-control">
         </div>
-
         
-
-
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Atualizar</button>
         </div>
     </form>
 
 </div>
-@Model.Price.ToString("F2", CultureInfo.InvariantCulture)
 
 <script>
 </script>

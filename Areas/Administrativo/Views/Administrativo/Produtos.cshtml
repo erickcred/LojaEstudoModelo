@@ -40,9 +40,9 @@
             {
                 <tr class="text-center">
                     <th>@produto.Id</th>
-                    <td class="pro-nome text-start" scope="col">@produto.Name</td>
-                    <td>@produto.QuantityInStok</td>
-                    <td>@produto.Price.ToString("C")</td>
+                    <td class="pro-nome text-start" scope="col">@produto.Nome</td>
+                    <td>@produto.Estoque</td>
+                    <td>@produto.Preco.ToString("C")</td>
                     <td>@((produto.Ativo == 1)? "Ativo" : "Inativo")</td>
                     <td>
                         <a class="text-primary fw-bold" href="editar/@produto.Id">Editar</a>&nbsp;

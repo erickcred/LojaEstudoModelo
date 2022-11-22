@@ -46,3 +46,9 @@ section {
     gap: 20px;
     font-size: 17px;
 }
+
+.button-disabled {
+    color: rgba(255, 0, 0, 0.575)!important;
+    cursor: no-drop;
+    
+}

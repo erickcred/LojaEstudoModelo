@@ -49,7 +49,7 @@ namespace AspNetInicio.Controllers
         [HttpPost("insert")]
         public async Task<IActionResult> Cadastro(IFormFile file, [FromForm] Produto model, [FromServices] AspNetInicioContext context)
         {
-            double price = model.Price / 100;
+            double preco = model.Preco / 100;
             Produto produto;
 
             if (file != null)
@@ -64,17 +64,17 @@ namespace AspNetInicio.Controllers
                     await file.CopyToAsync(stream);
                 
                 produto = new Produto{
-                    Name = model.Name, 
-                    Price = price,
-                    QuantityInStok =  model.QuantityInStok,
-                    Description = model.Description, Image = newPath.Substring(8), Ativo = model.Ativo};
+                    Nome = model.Nome, 
+                    Preco = preco,
+                    Estoque =  model.Estoque,
+                    Descricao = model.Descricao, Imagem = newPath.Substring(8), Ativo = model.Ativo};
             } else
             {
                 produto = new Produto{
-                    Name = model.Name, 
-                    Price = price,
-                    QuantityInStok =  model.QuantityInStok,
-                    Description = model.Description, Image = "/image/produtos/produto_default.jpg", Ativo = model.Ativo};
+                    Nome = model.Nome, 
+                    Preco = preco,
+                    Estoque =  model.Estoque,
+                    Descricao = model.Descricao, Imagem = "/image/produtos/produto_default.jpg", Ativo = model.Ativo};
             }
             var resultado = context.Produtos.Add(produto);
             await context.SaveChangesAsync();
@@ -96,15 +96,15 @@ namespace AspNetInicio.Controllers
         {
             // Recebendo e salvando a aimagem
             var produto = await context.Produtos.FirstOrDefaultAsync(x => x.Id == produtoModel.Id);
-            produto.Name = produtoModel.Name;
-            produto.Price = produtoModel.Price / 100;
+            produto.Nome = produtoModel.Nome;
+            produto.Preco = produtoModel.Preco / 100;
             produto.Ativo = produtoModel.Ativo;
-            produto.Description = produtoModel.Description;
-            produto.AdicionarEstoque(produto.QuantityInStok);
+            produto.Descricao = produtoModel.Descricao;
+            produto.AdicionarEstoque(produto.Estoque);
 
             if (file == null)
             {
-                produto.Image = produto.Image;
+                produto.Imagem = produto.Imagem;
 
                 context.Produtos.Update(produto);
                 await context.SaveChangesAsync();
@@ -121,14 +121,13 @@ namespace AspNetInicio.Controllers
                 await file.CopyToAsync(stream);
             
             // // Savando o produto
-            if (produto.Image != "image/produtos/produto_default.jpg")
+            if (produto.Imagem != "image/produtos/produto_default.jpg")
             {
-                System.IO.File.Delete($"wwwroot/{produto.Image}");
-                Console.WriteLine($"\n\n\n\n\n{produto.Image}\n\n\n\n\n");
+                System.IO.File.Delete($"wwwroot/{produto.Imagem}");
             }
 
 
-            produto.Image = newPath.Substring(8);
+            produto.Imagem = newPath.Substring(8);
 
             context.Produtos.Update(produto);
             await context.SaveChangesAsync();
@@ -169,11 +168,11 @@ namespace AspNetInicio.Controllers
         }
 
         [HttpPost("update-estoque")]
-        public async Task<IActionResult> Estoque([FromForm] int id, [FromForm] int QuantityInStok, [FromServices] AspNetInicioContext context)
+        public async Task<IActionResult> Estoque([FromForm] int id, [FromForm] int Estoque, [FromServices] AspNetInicioContext context)
         {
             var produto = await context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
         
-            produto.AdicionarEstoque(QuantityInStok);
+            produto.AdicionarEstoque(Estoque);
 
             context.Produtos.Update(produto);
             await context.SaveChangesAsync();

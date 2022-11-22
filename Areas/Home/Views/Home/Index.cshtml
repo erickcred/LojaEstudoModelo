@@ -1,6 +1,6 @@
 @model IEnumerable<AspNetInicio.Models.Produto>
 
-<section class="py-5 text-center container">
+@* <section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Album example</h1>
@@ -13,7 +13,7 @@
             </p>
         </div>
     </div>
-</section>
+</section> *@
 
 <div class="album py-5 bg-light">
     <div class="container">
@@ -23,19 +23,25 @@
         {
             <div class="col-12 d-flex">
                 <div class="card shadow-sm">
-                    <img class='d-placeholder-img card-img-top' src='@produtct.Image' alt='@produtct.Image'>
+                    <img class='d-placeholder-img card-img-top' src='@produtct.Imagem' alt='@produtct.Imagem'>
 
                     <div class="card-body">
-                        <h4 class="card-title">@produtct.Name</h4>
-                        <p class="card-text mb-5">@produtct.Description.</p>
+                        <h4 class="card-title">@produtct.Nome</h4>
+                        <p class="card-text mb-5">@produtct.Descricao.</p>
 
                         <div class="card-description">
                             <div class="btn-group">
                                 <a href="/@produtct.Id" type="button" class="radius-left btn btn-sm btn-outline-secondary">Mais</a>
-                                <button type="button" class="radius-right btn btn-sm btn-outline-secondary fw-bold">Comprar</button>
+                                @if (produtct.Estoque <= 1)
+                                {
+                                    <button disabled type="button" class="radius-right btn btn-sm btn-outline-secondary fw-bold button-disabled">Indisponivel</button>
+                                } else
+                                {
+                                    <button type="button" class="radius-right btn btn-sm btn-outline-secondary fw-bold">Comprar</button>
+                                }
                             </div>
                             
-                            <small class="text-muted fs-4">@produtct.Price.ToString("C")</small>
+                            <small class="text-muted fs-4">@produtct.Preco.ToString("C")</small>
                         </div>
                     </div>
                 </div>

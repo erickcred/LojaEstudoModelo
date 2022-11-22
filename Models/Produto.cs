@@ -8,33 +8,33 @@ namespace AspNetInicio.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Campo Nome é obtigatório!")]
-        public String Name { get;  set; }
+        public String Nome { get;  set; }
 
         [Required(ErrorMessage = "Campo Preco é obrigatório!")]
-        public double Price { get;  set; }
+        public double Preco { get;  set; }
 
         [Required(ErrorMessage = "Campo Quantidade é obrigatório!")]
-        public int QuantityInStok { get; set; }
+        public int Estoque { get; set; }
 
-        public String Description { get; set; }
-        public String Image { get; set; }
+        public String Descricao { get; set; }
+        public String Imagem { get; set; }
         public byte Ativo { get; set; }
 
 
         public void AdicionarEstoque(int valor)
         {
-            this.QuantityInStok += valor;
+            this.Estoque += valor;
         }
 
         public void Venda(int valor)
         {
-            if (valor <= QuantityInStok)
-                QuantityInStok -= valor;
+            if (valor <= Estoque)
+                Estoque -= valor;
         }
 
         public double GetTotal()
         {
-            return this.Price * QuantityInStok;
+            return this.Preco * Estoque;
         }
 
     
