@@ -34,11 +34,11 @@ namespace AspNetInicio.Controllers
             return View("Index");
         }
 
-        // [HttpGet("/cadastro")]
-        // public IActionResult Cadastro()
-        // {
-        //     return View("Cadastro");
-        // }
+        [HttpGet("/login")]
+        public IActionResult Cadastro()
+        {
+            return View("Login");
+        }
 
         // [HttpPost("insert")]
         // public async Task<IActionResult> Cadastro(IFormFile file, [FromForm] Produto produtoModel, [FromServices] AspNetInicioContext context)

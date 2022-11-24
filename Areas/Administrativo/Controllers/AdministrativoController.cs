@@ -120,7 +120,7 @@ namespace AspNetInicio.Controllers
             using (var stream = new FileStream(newPath, FileMode.Create))
                 await file.CopyToAsync(stream);
             
-            // // Savando o produto
+            // Excluindo imagem se não for a default
             if (produto.Imagem != "image/produtos/produto_default.jpg")
             {
                 System.IO.File.Delete($"wwwroot/{produto.Imagem}");
