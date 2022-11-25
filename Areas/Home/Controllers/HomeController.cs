@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AspNetInicio.Data;
-using AspNetInicio.Models;
+using ECommerce.Data;
+using ECommerce.Models;
 using Microsoft.Extensions.Options;
 
-namespace AspNetInicio.Controllers
+namespace ECommerce.Areas.Home.Controllers
 {
     [Area("Home")]
     [Controller]
@@ -18,14 +18,14 @@ namespace AspNetInicio.Controllers
     public class HomeController : Controller
     {
         [HttpGet("")]
-        public async Task<IActionResult> GetAll([FromServices] AspNetInicioContext context)
+        public async Task<IActionResult> GetAll([FromServices] ECommerceContext context)
         {
             var produtos = await context.Produtos.AsNoTracking().ToListAsync();
             return View("Index", produtos.Where(x => x.Ativo == 1));
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult Get([FromRoute] int id, [FromServices] AspNetInicioContext context)
+        public IActionResult Get([FromRoute] int id, [FromServices] ECommerceContext context)
         {
             var produto = context.Produtos.AsNoTracking().FirstOrDefault(x => x.Id == id);
             if (produto != null)
@@ -41,7 +41,7 @@ namespace AspNetInicio.Controllers
         }
 
         // [HttpPost("insert")]
-        // public async Task<IActionResult> Cadastro(IFormFile file, [FromForm] Produto produtoModel, [FromServices] AspNetInicioContext context)
+        // public async Task<IActionResult> Cadastro(IFormFile file, [FromForm] Produto produtoModel, [FromServices] ECommerceContext context)
         // {
 
         //     // Recebendo e salvando a aimagem
@@ -70,7 +70,7 @@ namespace AspNetInicio.Controllers
         // }
 
         // [HttpGet("/delete/{id:int}")]
-        // public async Task<IActionResult> Lixeira([FromRoute] int id, [FromServices] AspNetInicioContext context)
+        // public async Task<IActionResult> Lixeira([FromRoute] int id, [FromServices] ECommerceContext context)
         // {
         //     var produto = await context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
         //     if (produto == null)
@@ -83,7 +83,7 @@ namespace AspNetInicio.Controllers
         // }
 
         // [HttpGet("/ativar/{id:int}")]
-        // public async Task<IActionResult> Ativar([FromRoute] int id, [FromServices] AspNetInicioContext context)
+        // public async Task<IActionResult> Ativar([FromRoute] int id, [FromServices] ECommerceContext context)
         // {
         //     var produto = await context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
         //     if (produto == null)

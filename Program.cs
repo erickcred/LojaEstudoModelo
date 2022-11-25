@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using AspNetInicio.Data;
-using AspNetInicio.Models;
+using ECommerce.Data;
+using ECommerce.Models;
+using Microsoft.AspNetCore.Hosting;
 
-namespace AspNetInicio;
+namespace ECommerce;
 
 public class Program
 {
@@ -16,7 +17,7 @@ public class Program
         app.UseStaticFiles();
         app.UseRouting();
 
-        app.UseEndpoints(endpoints => 
+        app.UseEndpoints(endpoints =>
         {
             // app.MapControllers();
             endpoints.MapControllerRoute(
@@ -30,7 +31,7 @@ public class Program
         void ConfigureSevices(WebApplicationBuilder builder)
         {
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            builder.Services.AddDbContext<AspNetInicioContext>(
+            builder.Services.AddDbContext<ECommerceContext>(
                 options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
         }
 
@@ -43,4 +44,3 @@ public class Program
     }
 
 }
-

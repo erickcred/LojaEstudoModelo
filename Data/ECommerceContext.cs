@@ -1,14 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using AspNetInicio.Models;
-using AspNetInicio.Data.Mappings;
+using ECommerce.Models;
+using ECommerce.Data.Mappings;
 
-namespace AspNetInicio.Data
+namespace ECommerce.Data
 {
-    public class AspNetInicioContext : DbContext
+    public class ECommerceContext : DbContext
     {
-        public AspNetInicioContext(DbContextOptions<AspNetInicioContext> options) : base(options) {}
+        public ECommerceContext(DbContextOptions<ECommerceContext> options) : base(options) {}
 
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Estoque> Estoques { get; set; }
 
         // protected override void OnConfiguring(DbContextOptionsBuilder options)
         // {
@@ -19,6 +20,7 @@ namespace AspNetInicio.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ProdutoMap());
+            modelBuilder.ApplyConfiguration(new EstoqueMap());
         }
     }
 }

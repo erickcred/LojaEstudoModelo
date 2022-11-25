@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace AspNetInicio.Migrations
+namespace ECommerce.Migrations
 {
     public partial class AlterandoNomes : Migration
     {

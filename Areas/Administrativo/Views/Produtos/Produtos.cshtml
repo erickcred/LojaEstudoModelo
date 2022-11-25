@@ -1,8 +1,8 @@
 @using System.Globalization
-@model IEnumerable<AspNetInicio.Models.Produto>
+@model IEnumerable<ECommerce.Models.Produto>
 
 
-<a href="cadastro" class="btn btn-primary mt-3 mb-3">Cadastrar produto</a>
+<a href="produtos/cadastro" class="btn btn-primary mt-3 mb-3">Cadastrar produto</a>
 
 <section>
     @* <div
@@ -45,15 +45,15 @@
                     <td>@produto.Preco.ToString("C")</td>
                     <td>@((produto.Ativo == 1)? "Ativo" : "Inativo")</td>
                     <td>
-                        <a class="text-primary fw-bold" href="editar/@produto.Id">Editar</a>&nbsp;
+                        <a class="text-primary fw-bold" href="produtos/editar/@produto.Id">Editar</a>&nbsp;
                         @if (produto.Ativo == 1)
                         {
-                            <a class="text-danger fw-bold" href='delete/@produto.Id'>Inativar</a>
+                            <a class="text-danger fw-bold" href='produtos/delete/@produto.Id'>Inativar</a>
                         } else
                         {
-                            <a class="text-success fw-bold" href='ativar/@produto.Id'>Ativar</a>
+                            <a class="text-success fw-bold" href='produtos/ativar/@produto.Id'>Ativar</a>
                         }
-                        &nbsp;<a class="text-primary fw-bold" href="estoque/@produto.Id">Estoque</a>
+                        &nbsp;<a class="text-primary fw-bold" href="produtos/estoque/@produto.Id">Estoque</a>
                     </td>
                 </tr>
             }

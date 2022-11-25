@@ -1,25 +1,27 @@
-
-<a href="adm" class="btn btn-secondary mt-3 mb-3">Voltar</a>
+@using System.Globalization
+@model ECommerce.Models.Produto
 
 <div class="container mt-5 mb-5">
+<a href="/adm/produtos" class="btn btn-secondary mb-3">Voltar</a>
 
-    <form class="row g-3" action="insert" enctype="multipart/form-data" method="post">
+    <form class="row g-3" action="/adm/produtos/update" enctype="multipart/form-data" method="post">
+
+        <input hidden type="number" name="Id" value="@Model.Id" />
         <div class="col-md-6">
             <label for="Nome" class="form-label">Nome</label>
-            <input type="text" name="Nome" class="form-control">
+            <input type="text" name="Nome" class="form-control" value="@Model.Nome">
         </div>
+
         <div class="col-md-6">
             <label for="Preco" class="form-label">Preço</label>
-            <input type="number" name="Preco" class="form-control" step="0.01">
-        </div>
-        <div class="col-6">
-            <label for="Estoque" class="form-label">Estoque</label>
-            <input type="number" name="Estoque" class="form-control">
+            <input type="number" name="Preco" class="form-control" step="0.01" 
+            value='@Model.Preco.ToString("F2", CultureInfo.InvariantCulture)'>
         </div>
 
         <div class="col-md-4">
             <label for="Ativo" class="form-label">Situação</label>
             <select name="Ativo" class="form-select">
+                
                 <option value="1" selected>Ativo</option>
                 <option value="0">Inativo</option>
             </select>
@@ -27,16 +29,15 @@
 
         <div class="col-md-6">
             <label for="Descricao" class="form-label">Descrição</label>
-            <textarea name="Descricao" cols="10" rows="5" class="form-control"></textarea>
+            <textarea name="Descricao" cols="10" rows="5" class="form-control">@Model.Descricao</textarea>
         </div>
         <div class="col-md-4">
             <label for="file" class="form-label">Imagem</label>
             <input type="file" name="file" class="form-control">
         </div>
-
-
+        
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
         </div>
     </form>
 

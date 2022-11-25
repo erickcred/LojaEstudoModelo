@@ -1,8 +1,8 @@
-using AspNetInicio.Models;
+using ECommerce.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AspNetInicio.Data.Mappings
+namespace ECommerce.Data.Mappings
 {
     public class ProdutoMap : IEntityTypeConfiguration<Produto>
     {
