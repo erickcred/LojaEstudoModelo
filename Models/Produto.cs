@@ -6,14 +6,8 @@ namespace ECommerce.Models
     public class Produto
     {        
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "Campo Nome é obtigatório!")]
         public String Nome { get;  set; }
-
-        [Required(ErrorMessage = "Campo Preco é obrigatório!")]
         public double Preco { get;  set; }
-
-        [Required(ErrorMessage = "Campo Quantidade é obrigatório!")]
         public int Estoque { get; set; }
 
         public String Descricao { get; set; }

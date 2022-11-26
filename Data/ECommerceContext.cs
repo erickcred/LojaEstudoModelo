@@ -10,6 +10,7 @@ namespace ECommerce.Data
 
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Estoque> Estoques { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
         // protected override void OnConfiguring(DbContextOptionsBuilder options)
         // {
@@ -21,6 +22,7 @@ namespace ECommerce.Data
         {
             modelBuilder.ApplyConfiguration(new ProdutoMap());
             modelBuilder.ApplyConfiguration(new EstoqueMap());
+            modelBuilder.ApplyConfiguration(new ClienteMap());
         }
     }
 }

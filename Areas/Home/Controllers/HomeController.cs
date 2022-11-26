@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using ECommerce.Data;
 using ECommerce.Models;
 using Microsoft.Extensions.Options;
+using ECommerce.ViewModels;
 
 namespace ECommerce.Areas.Home.Controllers
 {
@@ -40,59 +41,14 @@ namespace ECommerce.Areas.Home.Controllers
             return View("Login");
         }
 
-        // [HttpPost("insert")]
-        // public async Task<IActionResult> Cadastro(IFormFile file, [FromForm] Produto produtoModel, [FromServices] ECommerceContext context)
-        // {
+        [HttpPost("/login-validar")]
+        public IActionResult ValidaLogin([FromBody] LoginViewModel model, [FromServices] ECommerceContext context)
+        {
+            var cliente = context.Clientes.FirstOrDefault(x => x.Email == model.Email);
+            if (cliente.Senha == model.Senha)
+                return Redirect("/adm");
 
-        //     // Recebendo e salvando a aimagem
-        //     if (file == null)
-        //     {
-        //         return Redirect("/cadastro");
-        //     }
-
-        //     var originName = file.FileName.Split(".")[0];
-        //     var originType = file.FileName.Split(".")[1];
-
-        //     string fileName = $"{originName}_{Guid.NewGuid().ToString()}.{originType}";
-        //     var newPath = Path.Combine("wwwroot/image/produtos/", fileName);
-
-        //     using (var stream = new FileStream(newPath, FileMode.Create))
-        //         await file.CopyToAsync(stream);
-            
-        //     // Savando o produto
-        //     double price = produtoModel.Price / 100;
-        //     produtoModel.Price = price;
-        //     produtoModel.Image = newPath.Substring(8);
-
-        //     var resultado = context.Produtos.Add(produtoModel);
-        //     context.SaveChanges();
-        //     return Redirect("/");
-        // }
-
-        // [HttpGet("/delete/{id:int}")]
-        // public async Task<IActionResult> Lixeira([FromRoute] int id, [FromServices] ECommerceContext context)
-        // {
-        //     var produto = await context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
-        //     if (produto == null)
-        //         return Redirect("/");
-
-        //     produto.Ativo = 0;
-        //     context.Produtos.Update(produto);
-        //     await context.SaveChangesAsync();
-        //     return Redirect("/");
-        // }
-
-        // [HttpGet("/ativar/{id:int}")]
-        // public async Task<IActionResult> Ativar([FromRoute] int id, [FromServices] ECommerceContext context)
-        // {
-        //     var produto = await context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
-        //     if (produto == null)
-        //         return Redirect("/");
-
-        //     produto.Ativo = 1;
-        //     context.Produtos.Update(produto);
-        //     await context.SaveChangesAsync();
-        //     return Redirect("/");
-        // }
+            return Redirect("/login");
+        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using ECommerce.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Migrations
 {
     [DbContext(typeof(ECommerceContext))]
-    partial class ECommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20221126220726_CreateClient")]
+    partial class CreateClient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,12 +45,6 @@ namespace ECommerce.Migrations
                         .HasColumnType("VARCHAR(255)")
                         .HasColumnName("Senha");
 
-                    b.Property<string>("TipoUsuario")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("VARCHAR(100)")
-                        .HasColumnName("TipoUsuario");
-
                     b.HasKey("Id");
 
                     b.ToTable("Cliente", (string)null);
@@ -63,7 +59,7 @@ namespace ECommerce.Migrations
                     b.Property<DateTime>("DataAtualizacao")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DateTime")
-                        .HasDefaultValue(new DateTime(2022, 11, 26, 19, 53, 25, 468, DateTimeKind.Local).AddTicks(8658))
+                        .HasDefaultValue(new DateTime(2022, 11, 26, 19, 7, 26, 294, DateTimeKind.Local).AddTicks(7459))
                         .HasColumnName("DataAtualizacao");
 
                     b.Property<int>("ProdutoId")

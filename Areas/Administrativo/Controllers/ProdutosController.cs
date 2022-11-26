@@ -60,7 +60,7 @@ namespace ECommerce.Areas.Administrativo.Controllers
                     Nome = model.Nome, 
                     Preco = preco,
                     Estoque =  model.Estoque,
-                    Descricao = model.Descricao, Imagem = "/image/produtos/produto_default.jpg", Ativo = model.Ativo};
+                    Descricao = model.Descricao, Imagem = "image/produtos/produto_default.jpg", Ativo = model.Ativo};
             }
 
 
@@ -108,7 +108,7 @@ namespace ECommerce.Areas.Administrativo.Controllers
                 await file.CopyToAsync(stream);
             
             // Excluindo imagem se não for a default
-            if (produto.Imagem != "image/produtos/produto_default.jpg")
+            if (produto.Imagem != "image/produtos/produto_default.jpg" )
             {
                 System.IO.File.Delete($"wwwroot/{produto.Imagem}");
             }
