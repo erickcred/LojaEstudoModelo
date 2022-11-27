@@ -49,7 +49,10 @@ namespace ECommerce.Areas.Publico.Controllers
             if (cliente != null)
             {
                 if (cliente.Senha == model.Senha)
-                    return Redirect("/adm");
+                    if (cliente.TipoUsuario == "administrativo")
+                        return Redirect("/adm");
+
+                    return Redirect("/cliente");
             }
 
             return View("Login", model);
