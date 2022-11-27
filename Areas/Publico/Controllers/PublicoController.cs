@@ -11,22 +11,22 @@ using ECommerce.Models;
 using Microsoft.Extensions.Options;
 using ECommerce.ViewModels;
 
-namespace ECommerce.Areas.Home.Controllers
+namespace ECommerce.Areas.Publico.Controllers
 {
-    [Area("Home")]
+    [Area("Publico")]
     [Controller]
     [Route("/")]
-    public class HomeController : Controller
+    public class PublicoController : Controller
     {
         [HttpGet("")]
-        public async Task<IActionResult> GetAll([FromServices] ECommerceContext context)
+        public async Task<IActionResult> Produtos([FromServices] ECommerceContext context)
         {
             var produtos = await context.Produtos.AsNoTracking().ToListAsync();
             return View("Index", produtos.Where(x => x.Ativo == 1));
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult Get([FromRoute] int id, [FromServices] ECommerceContext context)
+        public IActionResult Produto([FromRoute] int id, [FromServices] ECommerceContext context)
         {
             var produto = context.Produtos.AsNoTracking().FirstOrDefault(x => x.Id == id);
             if (produto != null)
@@ -36,7 +36,7 @@ namespace ECommerce.Areas.Home.Controllers
         }
 
         [HttpGet("login")]
-        public IActionResult Cadastro()
+        public IActionResult Login()
         {
             return View("Login");
         }
@@ -53,6 +53,24 @@ namespace ECommerce.Areas.Home.Controllers
             }
 
             return View("Login", model);
+        }
+
+        [HttpGet("cadastro")]
+        public IActionResult Cadastro()
+        {
+            return View("ClienteCadastro");
+        }
+
+        [HttpPost("cadastro")]
+        public async Task<IActionResult> Cadastro([FromForm] Cliente modelCliente, [FromServices] ECommerceContext context)
+        {
+            if (modelCliente == null)
+                return Redirect("/cadastro");
+
+            modelCliente.TipoUsuario = "cliente";
+            await context.Clientes.AddAsync(modelCliente);
+            await context.SaveChangesAsync();
+            return View("CadastroFinalizado");
         }
     }
 }

@@ -12,5 +12,7 @@ namespace ECommerce.Areas.Home.Controllers
         {
             return View("Index");
         }
+
+        
     }
 }
