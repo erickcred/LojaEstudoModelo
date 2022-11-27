@@ -35,20 +35,24 @@ namespace ECommerce.Areas.Home.Controllers
             return View("Index");
         }
 
-        [HttpGet("/login")]
+        [HttpGet("login")]
         public IActionResult Cadastro()
         {
             return View("Login");
         }
 
-        [HttpPost("/login-validar")]
-        public IActionResult ValidaLogin([FromBody] LoginViewModel model, [FromServices] ECommerceContext context)
+        [HttpPost("login-validar")]
+        public IActionResult ValidaLogin([FromForm] LoginViewModel model, [FromServices] ECommerceContext context)
         {
             var cliente = context.Clientes.FirstOrDefault(x => x.Email == model.Email);
-            if (cliente.Senha == model.Senha)
-                return Redirect("/adm");
 
-            return Redirect("/login");
+            if (cliente != null)
+            {
+                if (cliente.Senha == model.Senha)
+                    return Redirect("/adm");
+            }
+
+            return View("Login", model);
         }
     }
 }

@@ -25,17 +25,19 @@
             <p class="lead">Texto para se apresentado na parte de cima do forms de login.</p>
 
 
-            <form class="login text-secondary" action="/login-validar" method="post">
-                
+            <form class="login text-secondary" action="login-validar" method="post">
 
-                <div class="form-floating">
+                <span asp-validation-for="Senha" class="text-warning"></span>
+                <br />
+                <span asp-validation-for="Email" class="text-warning"></span>
+
+                <div class="form-floating mt-3">
                     <input type="email" class="form-control" name="Email" placeholder="nome@hotmail.com">
-                    <span asp-validation-for="Email"></span>
                     <label for="Email">E-mail</label>
                 </div>
+
                 <div class="form-floating mt-4 mb-4">
                     <input type="password" class="form-control" name="Senha" placeholder="Senha">
-                    <span asp-validation-for="Email"></span>
                     <label for="Senha">Senha</label>
                 </div>
 
