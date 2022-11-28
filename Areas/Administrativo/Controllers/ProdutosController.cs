@@ -10,6 +10,7 @@ using ECommerce.Data;
 using ECommerce.Models;
 using Microsoft.Extensions.Options;
 using ECommerce.ViewModels;
+using ECommerce.Utils;
 
 namespace ECommerce.Areas.Administrativo.Controllers
 {
@@ -97,51 +98,32 @@ namespace ECommerce.Areas.Administrativo.Controllers
                 await context.SaveChangesAsync();
                 return Redirect("/adm/produtos");
             }
-   
-            var originName = file.FileName.Split(".")[0];
-            var originType = file.FileName.Split(".")[1];
-
-            string fileName = $"{originName}_{Guid.NewGuid().ToString()}.{originType}";
-            var newPath = Path.Combine("wwwroot/image/produtos/", fileName);
-
-            using (var stream = new FileStream(newPath, FileMode.Create))
-                await file.CopyToAsync(stream);
+            
+            var newPath = await SalvarArquivo.Salvar(file, "image/produtos/");
             
             // Excluindo imagem se não for a default
-            if (produto.Imagem != "image/produtos/produto_default.jpg" )
-            {
-                System.IO.File.Delete($"wwwroot/{produto.Imagem}");
-            }
+            await SalvarArquivo.Deletar(produto.Imagem, "image/produtos/produto_default.jpg");
 
 
-            produto.Imagem = newPath.Substring(8);
+            produto.Imagem = newPath;
 
             context.Produtos.Update(produto);
             await context.SaveChangesAsync();
             return Redirect("/adm/produtos");
         }
 
-        [HttpGet("produtos/delete/{id:int}")]
+        [HttpGet("produtos/ativo/{id:int}")]
         public async Task<IActionResult> Inativar([FromRoute] int id, [FromServices] ECommerceContext context)
         {
             var produto = await context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
             if (produto == null)
                 return Redirect("/adm/produtos");
 
-            produto.Ativo = 0;
-            context.Produtos.Update(produto);
-            await context.SaveChangesAsync();
-            return Redirect("/adm/produtos");
-        }
-
-        [HttpGet("produtos/ativar/{id:int}")]
-        public async Task<IActionResult> Ativar([FromRoute] int id, [FromServices] ECommerceContext context)
-        {
-            var produto = await context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
-            if (produto == null)
-                return Redirect("/adm/produtos");
-
-            produto.Ativo = 1;
+            if (produto.Ativo == 0)
+                produto.Ativo = 1;
+            else
+                produto.Ativo = 0;
+            
             context.Produtos.Update(produto);
             await context.SaveChangesAsync();
             return Redirect("/adm/produtos");

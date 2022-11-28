@@ -1,0 +1,47 @@
+@using System.Globalization
+@model IEnumerable<ECommerce.Models.Cliente>
+
+
+<a href="clientes/cadastro" class="btn btn-primary mt-3 mb-3">Cadastrar Cliente</a>
+
+<section>
+
+    <h2>Clientes</h2>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped ">
+            <thead>
+                <tr class="text-center">
+                    <th>#</th>
+                    <th scope="row">Nome</th>
+                    <th>Email</th>
+                    <th>Tipo</th>
+                    <th>Situação</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var usuario in Model.OrderByDescending(x => x.Id))
+            {
+                <tr class="text-center">
+                    <th>@usuario.Id</th>
+                    <td class="pro-nome text-start" scope="col">@usuario.Nome</td>
+                    <td>@usuario.Email</td>
+                    <td>@usuario.TipoUsuario</td>
+                    <td>@((usuario.Ativo == 1)? "Ativo" : "Inativo")</td>
+                    <td>
+                        <a class="text-primary fw-bold" href="clientes/editar/@usuario.Id">Editar</a>&nbsp;
+                        @if (usuario.Ativo == 1)
+                        {
+                            <a class="text-danger fw-bold" href='clientes/ativo/@usuario.Id'>Inativar</a>
+                        } else
+                        {
+                            <a class="text-success fw-bold" href='clientes/ativo/@usuario.Id'>Ativar</a>
+                        }
+                        &nbsp;<a class="text-primary fw-bold" href="clientes/compras/@usuario.Id">Compras</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</section>

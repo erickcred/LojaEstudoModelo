@@ -1,0 +1,30 @@
+@model ECommerce.Models.Cliente
+
+<div class="container mt-5 mb-5">
+<a href="/adm/clientes" class="btn btn-secondary mb-3">Voltar</a>
+
+    <form class="row g-3" action="/adm/clientes/update" enctype="multipart/form-data" method="post">
+        <input tipe="text" name="Id" value="@Model.Id" hidden>
+        <div class="col-md-6">
+            <label for="Nome" class="form-label">Nome</label>
+            <input type="text" name="Nome" class="form-control" value="@Model.Nome" required>
+        </div>
+        <div class="col-md-6">
+            <label for="Email" class="form-label">E-mail</label>
+            <input type="text" name="Email" class="form-control" value="@Model.Email" required>
+        </div>
+
+        <div class="col-md-4">
+            <label for="Ativo" class="form-label">Situação</label>
+            <select name="Ativo" class="form-select">
+                <option value="1" selected>Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+    </form>
+
+</div>

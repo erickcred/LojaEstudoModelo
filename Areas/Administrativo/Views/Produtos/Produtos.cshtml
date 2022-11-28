@@ -29,6 +29,7 @@
                 <tr class="text-center">
                     <th>#</th>
                     <th scope="row">Nome</th>
+                    <th>Imagem</th>
                     <th>Estoque</th>
                     <th>Preço</th>
                     <th>Situação</th>
@@ -41,6 +42,7 @@
                 <tr class="text-center">
                     <th>@produto.Id</th>
                     <td class="pro-nome text-start" scope="col">@produto.Nome</td>
+                    <td><img style="width: 30%" src="/@produto.Imagem" alt="@produto.Nome"></td>
                     <td>@produto.Estoque</td>
                     <td>@produto.Preco.ToString("C")</td>
                     <td>@((produto.Ativo == 1)? "Ativo" : "Inativo")</td>
@@ -48,10 +50,10 @@
                         <a class="text-primary fw-bold" href="produtos/editar/@produto.Id">Editar</a>&nbsp;
                         @if (produto.Ativo == 1)
                         {
-                            <a class="text-danger fw-bold" href='produtos/delete/@produto.Id'>Inativar</a>
+                            <a class="text-danger fw-bold" href='produtos/ativo/@produto.Id'>Inativar</a>
                         } else
                         {
-                            <a class="text-success fw-bold" href='produtos/ativar/@produto.Id'>Ativar</a>
+                            <a class="text-success fw-bold" href='produtos/ativo/@produto.Id'>Ativar</a>
                         }
                         &nbsp;<a class="text-primary fw-bold" href="produtos/estoque/@produto.Id">Estoque</a>
                     </td>

@@ -31,6 +31,17 @@ namespace ECommerce.Data.Mappings
                 .HasColumnName("Senha")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255);
+
+            builder.Property(x => x.Ativo)
+                .HasColumnName("Ativo")
+                .HasColumnType("TINYINT")
+                .HasMaxLength(1);
+
+
+            builder.Property(x => x.Imagem)
+                .HasColumnName("Imagem")
+                .HasColumnType("VARCHAR")
+                .HasMaxLength(255);
         }
     }
 }

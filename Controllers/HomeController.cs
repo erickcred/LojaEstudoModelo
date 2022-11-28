@@ -11,12 +11,11 @@ using ECommerce.Models;
 using Microsoft.Extensions.Options;
 using ECommerce.ViewModels;
 
-namespace ECommerce.Areas.Publico.Controllers
+namespace ECommerce.Controllers
 {
-    [Area("Publico")]
     [Controller]
     [Route("/")]
-    public class PublicoController : Controller
+    public class HomeController : Controller
     {
         [HttpGet("")]
         public async Task<IActionResult> Produtos([FromServices] ECommerceContext context)

@@ -1,0 +1,56 @@
+@using System.Globalization
+@model ECommerce.Models.Produto
+
+<div class="container mt-5 mb-5">
+<a href="/adm/produtos" class="btn btn-secondary mb-3">Voltar</a>
+
+    <form class="row g-3" action="/adm/produtos/update-estoque" method="post">
+
+        <input hidden type="number" name="Id" value="@Model.Id" />
+        
+        <label><strong>Id:</strong> <span name="Id">@Model.Id</span></label> 
+        <label><strong>Produto:</strong> <span>@Model.Nome</span></label> 
+        <label><strong>Estoque Atual:</strong> <span>@Model.Estoque</span></label>
+
+        <div class="col-md-6">
+            <label for="Estoque" class="form-label">Estoque para entrada</label>
+            <input type="number" name="Estoque" class="form-control">
+            <span asp-validation-for="Estoque" class="text-danger"></span>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Atualizar Estoque</button>
+        </div>
+    </form>
+
+</div>
+
+
+<div class="container mt-5 mb-5">
+
+    <table class="table table-striped ">
+            <thead>
+                <tr class="text-center">
+                    <th>#</th>
+                    <th scope="row">Nome</th>
+                    <th>Quntidade incluida</th>
+                    <th>Data Atualização</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var estoque in (List<Estoque>)ViewBag.Estoque)
+            {
+                <tr class="text-center">
+                    <td>@estoque.Id</td>
+                    <td>@Model.Nome</td>
+                    <td>@estoque.Quantidade</td>
+                    <td>@estoque.DataAtualizacao</td>
+                </tr>
+            }
+            </tbody>
+    </table>
+
+</div>
+
+<script>
+</script>

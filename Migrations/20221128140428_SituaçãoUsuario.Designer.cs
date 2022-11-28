@@ -3,6 +3,7 @@ using System;
 using ECommerce.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Migrations
 {
     [DbContext(typeof(ECommerceContext))]
-    partial class ECommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20221128140428_SituaçãoUsuario")]
+    partial class SituaçãoUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,12 +37,6 @@ namespace ECommerce.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("VARCHAR(200)")
                         .HasColumnName("Email");
-
-                    b.Property<string>("Imagem")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("VARCHAR(255)")
-                        .HasColumnName("Imagem");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -74,7 +70,7 @@ namespace ECommerce.Migrations
                     b.Property<DateTime>("DataAtualizacao")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DateTime")
-                        .HasDefaultValue(new DateTime(2022, 11, 28, 18, 7, 49, 742, DateTimeKind.Local).AddTicks(577))
+                        .HasDefaultValue(new DateTime(2022, 11, 28, 11, 4, 28, 141, DateTimeKind.Local).AddTicks(8218))
                         .HasColumnName("DataAtualizacao");
 
                     b.Property<int>("ProdutoId")
