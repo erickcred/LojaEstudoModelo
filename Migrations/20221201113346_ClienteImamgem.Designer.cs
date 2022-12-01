@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.Migrations
 {
     [DbContext(typeof(ECommerceContext))]
-    [Migration("20221128210749_ImagemUsuario")]
-    partial class ImagemUsuario
+    [Migration("20221201113346_ClienteImamgem")]
+    partial class ClienteImamgem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,7 +39,6 @@ namespace ECommerce.Migrations
                         .HasColumnName("Email");
 
                     b.Property<string>("Imagem")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("VARCHAR(255)")
                         .HasColumnName("Imagem");
@@ -76,7 +75,7 @@ namespace ECommerce.Migrations
                     b.Property<DateTime>("DataAtualizacao")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DateTime")
-                        .HasDefaultValue(new DateTime(2022, 11, 28, 18, 7, 49, 742, DateTimeKind.Local).AddTicks(577))
+                        .HasDefaultValue(new DateTime(2022, 12, 1, 8, 33, 46, 876, DateTimeKind.Local).AddTicks(2968))
                         .HasColumnName("DataAtualizacao");
 
                     b.Property<int>("ProdutoId")

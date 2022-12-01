@@ -37,8 +37,8 @@ namespace ECommerce.Data.Mappings
                 .HasColumnType("TINYINT")
                 .HasMaxLength(1);
 
-
             builder.Property(x => x.Imagem)
+                .IsRequired(false)
                 .HasColumnName("Imagem")
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(255);
