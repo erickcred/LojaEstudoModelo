@@ -4,6 +4,10 @@
 <a href="/adm/clientes" class="btn btn-secondary mb-3">Voltar</a>
 
     <form class="row g-3" action="/adm/clientes/update" enctype="multipart/form-data" method="post">
+        <div>
+            <img style="border-radius: 100%; width: 150px; height: 150px; display: block;" src="/@Model.Imagem" alt="Imagem cliente">
+        </div>
+
         <input tipe="text" name="Id" value="@Model.Id" hidden>
         <div class="col-md-6">
             <label for="Nome" class="form-label">Nome</label>

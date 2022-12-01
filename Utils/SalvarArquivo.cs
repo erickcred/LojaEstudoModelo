@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ECommerce.Utils
-{
+{ 
     public static class SalvarArquivo
     {
         public async static Task<String> Salvar(IFormFile file, String caminho)
@@ -12,7 +12,7 @@ namespace ECommerce.Utils
             var originName = file.FileName.Split(".")[0];
             var originType = file.FileName.Split(".")[1];
 
-            string fileName = $"{originName}_{Guid.NewGuid().ToString()}.{originType}";
+            string fileName = $"{originName.Split(" ")[0]}_{Guid.NewGuid().ToString()}.{originType}";
             var newPath = Path.Combine("wwwroot/", caminho, fileName);
 
             using (var stream = new FileStream(newPath, FileMode.Create))

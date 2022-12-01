@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ECommerce.Data;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.Models;
+using ECommerce.Utils;
 
 namespace ECommerce.Areas.Administrativo.Controllers
 {
@@ -26,37 +27,16 @@ namespace ECommerce.Areas.Administrativo.Controllers
         [HttpPost("clientes/insert")]
         public async Task<IActionResult> Cadastro(IFormFile file, [FromForm] Cliente model, [FromServices] ECommerceContext context)
         {
-            Cliente cliente;
+            if (file != null)
+            {
+                var imagem = await SalvarArquivo.Salvar(file, "image/usuarios/");
+                model.Imagem = imagem;
+            } else
+            {
+                model.Imagem = "image/usuarios/usuario_default.png";
+            }
 
-            // if (file != null)
-            // {
-            //     var originName = file.FileName.Split(".")[0];
-            //     var originType = file.FileName.Split(".")[1];
-
-            //     string fileName = $"{originName}_{Guid.NewGuid().ToString()}.{originType}";
-            //     var newPath = Path.Combine("wwwroot/image/produtos/", fileName);
-
-            //     using (var stream = new FileStream(newPath, FileMode.Create))
-            //         await file.CopyToAsync(stream);
-                
-            //     produto = new Produto{
-            //         Nome = model.Nome, 
-            //         Preco = preco,
-            //         Estoque =  model.Estoque,
-            //         Descricao = model.Descricao, Imagem = newPath.Substring(8), Ativo = model.Ativo};
-            // } 
-            // else
-            // {
-                cliente = new Cliente{
-                    Nome = model.Nome, 
-                    Email = model.Email,
-                    Senha = "123",
-                    // Imagem = "image/produtos/produto_default.jpg"
-                    };
-            // }
-
-
-            var resultado = context.Clientes.Add(cliente);
+            var resultado = context.Clientes.Add(model);
             await context.SaveChangesAsync();
             return Redirect("/adm/clientes");
         }

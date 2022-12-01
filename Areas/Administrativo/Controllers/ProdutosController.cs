@@ -40,20 +40,21 @@ namespace ECommerce.Areas.Administrativo.Controllers
 
             if (file != null)
             {
-                var originName = file.FileName.Split(".")[0];
-                var originType = file.FileName.Split(".")[1];
+                // var originName = file.FileName.Split(".")[0];
+                // var originType = file.FileName.Split(".")[1];
 
-                string fileName = $"{originName}_{Guid.NewGuid().ToString()}.{originType}";
-                var newPath = Path.Combine("wwwroot/image/produtos/", fileName);
+                // string fileName = $"{originName}_{Guid.NewGuid().ToString()}.{originType}";
+                // var newPath = Path.Combine("wwwroot/image/produtos/", fileName);
 
-                using (var stream = new FileStream(newPath, FileMode.Create))
-                    await file.CopyToAsync(stream);
+                // using (var stream = new FileStream(newPath, FileMode.Create))
+                //     await file.CopyToAsync(stream);
+                var imagem = await SalvarArquivo.Salvar(file, "image/produtos/");
                 
                 produto = new Produto{
                     Nome = model.Nome, 
                     Preco = preco,
                     Estoque =  model.Estoque,
-                    Descricao = model.Descricao, Imagem = newPath.Substring(8), Ativo = model.Ativo};
+                    Descricao = model.Descricao, Imagem = imagem, Ativo = model.Ativo};
             } 
             else
             {
